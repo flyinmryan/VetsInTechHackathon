@@ -28,11 +28,160 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+<style>
+  #login {
+    display: none;
+    color: white;
+    margin: 10% auto;
+    left: 0;
+    right: 0;
+    width: 460px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    position: fixed;
+    z-index: 3;
+    border-radius: 10px;
+  }
+  #regLink {
+    font-size: 14px;
+    color: #51ff15;
+  }
+  #regLink:hover {
+    cursor: pointer;
+    color: orange;
+  }
+  #log {
+    width: 150px;
+  }
+  #reg {
+    display: none;
+  }
+  #login.p, h1, h2, label {
+    margin: 0px auto;
+    color: white;
+  }
+  #login input.inputs, #role.inputs {
+    width: 300px;
+    margin: 0px auto;
+    height: 20px;
+    font-size: 12px;
+    text-align: center;
+  }
+  #login textarea {
+    width: 300px;
+    margin: 0px auto;
+  }
+  #login input.inputs, #login textarea.inputs, #role.inputs {
+    font-size: 12px;
+    text-align: center;
+  }
+  #role.inputs option {
+    text-align: center;
+    background-color: #313131;
+  }
+  #login .btn {
+    width: 100px;
+  }
+  #login a:hover {
+    color: orange;
+  }
+  #login input.btn {
+    margin-top: 10px;
+  }
+  #login form {
+    margin: 0px;
+  }
+  #reg p {
+    margin-bottom: 2px;
+  }
+  #login select {
+    padding-left: 65px;
+  }
+  #login p {
+    margin-bottom: 0px;
+  }
+  #closer {
+    font-size: 10px;
+  }
 
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(document).on("click", "#signIn", function(){
+      $("#login").slideToggle(1000);
+  	})
+  	$(document).on("click", "#regLink", function(){
+      $("#regLink").toggle();
+  		$("#logForm").slideToggle();
+  		$("#reg").slideToggle();
+  	})
+    $(document).on("click", "#logInLink", function(){
+      $("#login").slideToggle(1000);
+    })
+  })
+</script>
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
+    <!-- Login/Registration -->
+    <div id="login">
+  		<h2 id="title">Login</h2>
+
+      <script>
+        $(document).on("click", "#closer", function(){
+          $("#login").fadeOut(800);
+        })
+      </script>
+
+  		<p id="regLink">Click here to register</p>
+      <p id='closer'>Close this window</p>
+  		<form action='/users/login' method='post' id="logForm">
+  			<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+
+  			<p><label for='email'>Email</label>
+  			<input id="email" name="email" type="text" class="inputs"></p>
+
+  			<p><label for='password'>Password</label>
+  			<input type="password" id="password" name="password" type="text" class="inputs"></p>
+  			<p id="logBtn"><input type="submit" value="Log In" class="btn"></p>
+  		</form>
+  				<div id="reg">
+  					<form action='/users' method='post'>
+  						<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+
+  						<p><label for='email'>Email</label>
+  						<input id="email" name="user[email]" type="email" class="inputs"></p>
+
+  						<p><label for='name'>Full Name</label>
+  						<input id="name" name="user[name]" type="text" class="inputs"></p>
+
+  						<p><label for='password'>Password</label>
+  						<input id="password" name="user[password]" type="password" class="inputs"></p>
+
+  						<p><label for='password'>Confirm Password</label>
+  						<input id="password" name="user[password_confirmation]" type="password" class="inputs"></p>
+
+  					<p><label for="role">Role</label>
+  						<select id="role" name="user[role]" class="inputs">
+                <option value="" disabled selected>Are you a Developer or Client?</option>
+                <option value="Client">Client</option>
+                <option value="Developer">Developer</option>
+              </select>
+            </p>
+
+  						<p><label for='title'>Title</label>
+  						<input id="title" name="user[title]" type="text" class="inputs"></p>
+
+  						<p><label for='description'>Description</label>
+  						<textarea id="description" name="user[description]" type="text" class="inputs"></textarea></p>
+
+  						<p><input type="submit" value="Register" class="btn"></p>
+  					</form>
+  				</div>
+  </div>
     <!-- Navigation -->
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container">
@@ -51,6 +200,9 @@
                     <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
                     <li class="hidden">
                         <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a id="signIn" style="cursor: pointer;">Sign In | Sign Up</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#about">About</a>
