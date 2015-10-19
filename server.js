@@ -10,5 +10,5 @@ require('./config/mongoose.js');
 require('./config/routes.js')(app);
 
 app.listen(8888, function(){
-	console.log('Bucket List on port 8888!');
+	console.log('Listening on port 8888!');
 });
