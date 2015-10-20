@@ -120,6 +120,12 @@
   		$("#reg").slideToggle();
       $("#title").html("<h2>Registration</h2>")
   	})
+    $(document).on("click", "#addClick", function(){
+      $("#regLink").toggle();
+  		$("#logForm").slideToggle();
+  		$("#reg").slideToggle();
+      $("#title").html("<h2>LOG IN</h2>")
+  	})
     $(document).on("click", "#logInLink", function(){
       $("#login").slideToggle(1000);
     })
@@ -149,7 +155,7 @@
   			<p class="logLabel"><label for='password'>Password</label>
   			<br><input type="password" id="password" name="password" type="text" class="inputs"></p>
   			<!-- <p id="logBtn"><input type="submit" value="Log In" class="btn"></p> -->
-        <a href="/home/" style="padding: 12px; background-color: #18bd9b; color: white;     position: relative;
+        <a href="home.html" style="padding: 12px; background-color: #18bd9b; color: white;     position: relative;
     top: 20px; margin-bottom: 10px;">LOG IN</a>
         <p id='closer'>Close this window</p>
   		</form>
@@ -167,7 +173,7 @@
   						<br><input id="name" name="user[phoneNumber]" type="text" class="inputs"></p>
 
               <p class="logLabel"><label for='name'>Address</label>
-  						<br><input id="name" name="user[region]" type="text" class="inputs"></p>
+  						<br><input id="addClick" name="user[region]" type="text" class="inputs"></p>
 
   						<p class="logLabel"><label for='password'>Password</label>
   						<br><input id="password" name="user[password]" type="password" class="inputs"></p>
