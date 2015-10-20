@@ -8,8 +8,8 @@ module.exports = function(app){
 	// 	users.show(req, res);
 	// });
 
-	app.get('/home', function (req,res){
+	app.post('/home', function (req,res){
 		res.render("home")
-      
+
   });
 };

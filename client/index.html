@@ -37,7 +37,7 @@
     right: 0;
     width: 460px;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.9);
     padding: 10px;
     position: fixed;
     z-index: 3;
@@ -45,7 +45,7 @@
   }
   #regLink {
     font-size: 14px;
-    color: #51ff15;
+    color: #18bd9b;
   }
   #regLink:hover {
     cursor: pointer;
@@ -57,31 +57,26 @@
   #reg {
     display: none;
   }
-  #login.p, h1, h2, label {
+  #login.p, h1, h2, label, .logLabel {
     margin: 0px auto;
     color: white;
   }
-  #login input.inputs, #role.inputs {
+  #login {
+    padding: 15px;
+    border: 2px solid white;
+  }
+  #login input.inputs {
     width: 300px;
     margin: 0px auto;
     height: 20px;
     font-size: 12px;
     text-align: center;
-  }
-  #login textarea {
-    width: 300px;
-    margin: 0px auto;
-  }
-  #login input.inputs, #login textarea.inputs, #role.inputs {
-    font-size: 12px;
-    text-align: center;
-  }
-  #role.inputs option {
-    text-align: center;
-    background-color: #313131;
+    border: 2px solid #18bd9b;
+    border-radius: 6px;
   }
   #login .btn {
     width: 100px;
+    color: white;
   }
   #login a:hover {
     color: orange;
@@ -92,19 +87,25 @@
   #login form {
     margin: 0px;
   }
-  #reg p {
+  #reg p, .logLabel {
     margin-bottom: 2px;
   }
   #login select {
     padding-left: 65px;
   }
-  #login p {
+  #login p, .logLabel {
     margin-bottom: 0px;
+    font-weight: 200;
   }
   #closer {
     font-size: 10px;
   }
-
+  input.btn {
+    background-color: #18bd9b;
+  }
+  input {
+    color: black;
+  }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript">
@@ -116,6 +117,7 @@
       $("#regLink").toggle();
   		$("#logForm").slideToggle();
   		$("#reg").slideToggle();
+      $("#title").html("<h2>Registration</h2>")
   	})
     $(document).on("click", "#logInLink", function(){
       $("#login").slideToggle(1000);
@@ -136,49 +138,44 @@
         })
       </script>
 
-  		<p id="regLink">Click here to register</p>
-      <p id='closer'>Close this window</p>
-  		<form action='/users/login' method='post' id="logForm">
+  		<p id="regLink">Click here to Register</p>
+  		<form action='/home' method='post' id="logForm">
   			<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
 
-  			<p><label for='email'>Email</label>
-  			<input id="email" name="email" type="text" class="inputs"></p>
+  			<p class="logLabel"><label for='email'>Email</label>
+  			<br><input id="email" name="email" type="text" class="inputs"></p>
 
-  			<p><label for='password'>Password</label>
-  			<input type="password" id="password" name="password" type="text" class="inputs"></p>
-  			<p id="logBtn"><input type="submit" value="Log In" class="btn"></p>
+  			<p class="logLabel"><label for='password'>Password</label>
+  			<br><input type="password" id="password" name="password" type="text" class="inputs"></p>
+  			<!-- <p id="logBtn"><input type="submit" value="Log In" class="btn"></p> -->
+        <a href="/home/" style="padding: 12px; background-color: #18bd9b; color: white;     position: relative;
+    top: 20px;">LOG IN</a>
+        <p id='closer'>Close this window</p>
   		</form>
   				<div id="reg">
   					<form action='/users' method='post'>
   						<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
 
-  						<p><label for='email'>Email</label>
-  						<input id="email" name="user[email]" type="email" class="inputs"></p>
+  						<p class="logLabel"><label for='email'>Email</label>
+  						<br><input id="email" name="user[email]" type="email" class="inputs"></p>
 
-  						<p><label for='name'>Full Name</label>
-  						<input id="name" name="user[name]" type="text" class="inputs"></p>
+  						<br><p class="logLabel"><label for='name'>Full Name</label>
+  						<br><input id="name" name="user[name]" type="text" class="inputs"></p>
 
-  						<p><label for='password'>Password</label>
-  						<input id="password" name="user[password]" type="password" class="inputs"></p>
+              <p class="logLabel"><label for='name'>Phone Number</label>
+  						<br><input id="name" name="user[phoneNumber]" type="text" class="inputs"></p>
 
-  						<p><label for='password'>Confirm Password</label>
-  						<input id="password" name="user[password_confirmation]" type="password" class="inputs"></p>
+              <p class="logLabel"><label for='name'>Address</label>
+  						<br><input id="name" name="user[region]" type="text" class="inputs"></p>
 
-  					<p><label for="role">Role</label>
-  						<select id="role" name="user[role]" class="inputs">
-                <option value="" disabled selected>Are you a Developer or Client?</option>
-                <option value="Client">Client</option>
-                <option value="Developer">Developer</option>
-              </select>
-            </p>
+  						<p class="logLabel"><label for='password'>Password</label>
+  						<br><input id="password" name="user[password]" type="password" class="inputs"></p>
 
-  						<p><label for='title'>Title</label>
-  						<input id="title" name="user[title]" type="text" class="inputs"></p>
+  						<p class="logLabel"><label for='password'>Confirm Password</label>
+  						<br><input id="password" name="user[password_confirmation]" type="password" class="inputs"></p>
 
-  						<p><label for='description'>Description</label>
-  						<textarea id="description" name="user[description]" type="text" class="inputs"></textarea></p>
-
-  						<p><input type="submit" value="Register" class="btn"></p>
+  						<p class="logLabel"><input type="submit" value="Register" class="btn"></p>
+              <p id='closer'>Close this window</p>
   					</form>
   				</div>
   </div>
@@ -190,7 +187,7 @@
                     <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">
-                    <i class="fa fa-play-circle"></i>  <span class="light">Start</span> Tesla
+                    <i class="fa fa-play-circle"></i>  <span class="light">GET</span> RECHARGED
                 </a>
             </div>
 
@@ -227,7 +224,7 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <h1 class="brand-heading">RECHARGED</h1>
-                        <p class="intro-text">On demand or subscription hassle-free Tesla charging and detailing service<br>Created by VetsInTech</p>
+                        <p class="intro-text">On-Demand Tesla charging and detailing service. Request your personal valet today!<br>Created by VetsInTech</p>
                         <a href="#about" class="btn btn-circle page-scroll">
                             <i class="fa fa-angle-double-down animated"></i>
                         </a>
@@ -241,10 +238,11 @@
     <section id="about" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h2>About RECHARGED</h2>
-                <p>Grayscale is a free Bootstrap 3 theme created by Start Bootstrap. It can be yours right now, simply download the template on <a href="http://startbootstrap.com/template-overviews/grayscale/">the preview page</a>. The theme is open source, and you can use it for any purpose, personal or commercial.</p>
-                <p>This theme features stock photos by <a href="http://gratisography.com/">Gratisography</a> along with a custom Google Maps skin courtesy of <a href="http://snazzymaps.com/">Snazzy Maps</a>.</p>
-                <p>Grayscale includes full HTML, CSS, and custom JavaScript files along with LESS files for easy customization.</p>
+              <h2>About RECHARGED</h2>
+              <br>
+              <p>We are a veteran owned company of Tesla enthusiasts that knows how hard it can be to keep your Tesla charged and clean. We created RECHARGED for Tesla professionals who know how much their time is worth and appreciate 5-star service.</p>
+
+              <p>Our team members are fellow veterans that understand what it means to serve and we donate a portion of our profit to organizations focused on Service and Sustainability.</p>
             </div>
         </div>
     </section>
@@ -254,8 +252,8 @@
         <div class="download-section">
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <h2>Download Grayscale</h2>
-                    <p>You can download Grayscale for free on the preview page at Start Bootstrap.</p>
+                    <h2>Download RECHARGED App Today</h2>
+                    <p>You can download the NEW RECHARGED App for free on GooglePlay and the AppStore!</p>
                     <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Visit Download Page</a>
                 </div>
             </div>
@@ -266,8 +264,8 @@
     <section id="contact" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h2>Contact Start Bootstrap</h2>
-                <p>Feel free to email us to provide some feedback on our templates, give us suggestions for new templates and themes, or to just say hello!</p>
+                <h2>Contact RECHARGED</h2>
+                <p>Feel free to email us to provide some feedback on our services, give us suggestions, or to just say hello!</p>
                 <p><a href="mailto:feedback@startbootstrap.com">feedback@startbootstrap.com</a>
                 </p>
                 <ul class="list-inline banner-social-buttons">
