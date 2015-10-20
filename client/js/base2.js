@@ -61,7 +61,7 @@ $(function() {
           //place a moveable pin on users location
           var myLocation = new google.maps.Marker({
             map: map,
-            position: pos,
+            position: {lat: 37.461255, lng: -122.139101},
             animation: google.maps.Animation.DROP,
             title: 'My Location',
             icon: '/img/mepin.png'
