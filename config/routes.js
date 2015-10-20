@@ -12,4 +12,8 @@ module.exports = function(app){
 		res.render("home");
       
   });
+
+  app.get('/base', function (req, res){
+  	res.render("base");
+  });
 };
