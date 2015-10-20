@@ -6,14 +6,317 @@
 	<script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 
 
-	<script type="text/javascript" src="./js/home.js"></script>
+	<script src="//maps.googleapis.com/maps/api/js?v=3.exp"></script>
+	<!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/grayscale.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+
+	<style>
+
+	#map-canvas {
+	position: absolute;
+	height: 53vh;
+	width: 100vw;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+	z-index: 2;
+	}
+
+	.service-btn {
+  background: #fa0f36;
+  background-image: -webkit-linear-gradient(top, #fa0f36, #913535);
+  background-image: -moz-linear-gradient(top, #fa0f36, #913535);
+  background-image: -ms-linear-gradient(top, #fa0f36, #913535);
+  background-image: -o-linear-gradient(top, #fa0f36, #913535);
+  background-image: linear-gradient(to bottom, #fa0f36, #913535);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  text-shadow: 1px 1px 3px #666666;
+  -webkit-box-shadow: 0px 2px 4px #666666;
+  -moz-box-shadow: 0px 2px 4px #666666;
+  box-shadow: 0px 2px 4px #666666;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 21px;
+  padding: 10px 30px 10px 30px;
+  text-decoration: none;
+  float: none;
+  margin-left: 40%;
+  margin-right: auto;
+}
+
+.service-btn:hover {
+  background: #73ed00;
+  background-image: -webkit-linear-gradient(top, #73ed00, #2c5c2e);
+  background-image: -moz-linear-gradient(top, #73ed00, #2c5c2e);
+  background-image: -ms-linear-gradient(top, #73ed00, #2c5c2e);
+  background-image: -o-linear-gradient(top, #73ed00, #2c5c2e);
+  background-image: linear-gradient(to bottom, #73ed00, #2c5c2e);
+  text-decoration: none;
+}
+
+.home-text {
+	margin-top: 100px;
+	text-align: center;
+}
+
+#loader-container {
+	position:absolute;
+  width: 2000px;
+  height:400px;
+  left:5%;
+  margin-left:-300px;
+  margin-top: 280px;
+  z-index: 5;
+  background-color: rgba(0,0,0,0.5)
+
+}
+
+#load {
+  margin-top: 200px;
+  overflow:visible;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+  cursor:default;
+
+}
+
+#load div {
+  position:absolute;
+  width:20px;
+  height:36px;
+  opacity:0;
+  font-family:Helvetica, Arial, sans-serif;
+  animation:move 2s linear infinite;
+  -o-animation:move 2s linear infinite;
+  -moz-animation:move 2s linear infinite;
+  -webkit-animation:move 2s linear infinite;
+  transform:rotate(180deg);
+  -o-transform:rotate(180deg);
+  -moz-transform:rotate(180deg);
+  -webkit-transform:rotate(180deg);
+  color: red;
+}
+
+#load div:nth-child(2) {
+  animation-delay:0.2s;
+  -o-animation-delay:0.2s;
+  -moz-animation-delay:0.2s;
+  -webkit-animation-delay:0.2s;
+}
+#load div:nth-child(3) {
+  animation-delay:0.4s;
+  -o-animation-delay:0.4s;
+  -webkit-animation-delay:0.4s;
+  -webkit-animation-delay:0.4s;
+}
+#load div:nth-child(4) {
+  animation-delay:0.6s;
+  -o-animation-delay:0.6s;
+  -moz-animation-delay:0.6s;
+  -webkit-animation-delay:0.6s;
+}
+#load div:nth-child(5) {
+  animation-delay:0.8s;
+  -o-animation-delay:0.8s;
+  -moz-animation-delay:0.8s;
+  -webkit-animation-delay:0.8s;
+}
+#load div:nth-child(6) {
+  animation-delay:1s;
+  -o-animation-delay:1s;
+  -moz-animation-delay:1s;
+  -webkit-animation-delay:1s;
+}
+#load div:nth-child(7) {
+  animation-delay:1.2s;
+  -o-animation-delay:1.2s;
+  -moz-animation-delay:1.2s;
+  -webkit-animation-delay:1.2s;
+}
+
+@keyframes move {
+  0% {
+    left:0;
+    opacity:0;
+  }
+	35% {
+		left: 41%;
+		-moz-transform:rotate(0deg);
+		-webkit-transform:rotate(0deg);
+		-o-transform:rotate(0deg);
+		transform:rotate(0deg);
+		opacity:1;
+	}
+	65% {
+		left:59%;
+		-moz-transform:rotate(0deg);
+		-webkit-transform:rotate(0deg);
+		-o-transform:rotate(0deg);
+		transform:rotate(0deg);
+		opacity:1;
+	}
+	100% {
+		left:100%;
+		-moz-transform:rotate(-180deg);
+		-webkit-transform:rotate(-180deg);
+		-o-transform:rotate(-180deg);
+		transform:rotate(-180deg);
+		opacity:0;
+	}
+}
+
+@-moz-keyframes move {
+	0% {
+		left:0;
+		opacity:0;
+	}
+	35% {
+		left:41%;
+		-moz-transform:rotate(0deg);
+		transform:rotate(0deg);
+		opacity:1;
+	}
+	65% {
+		left:59%;
+		-moz-transform:rotate(0deg);
+		transform:rotate(0deg);
+		opacity:1;
+	}
+	100% {
+		left:100%;
+		-moz-transform:rotate(-180deg);
+		transform:rotate(-180deg);
+		opacity:0;
+	}
+}
+
+@-webkit-keyframes move {
+	0% {
+		left:0;
+		opacity:0;
+	}
+	35% {
+		left:41%;
+		-webkit-transform:rotate(0deg);
+		transform:rotate(0deg);
+		opacity:1;
+	}
+	65% {
+		left:59%;
+		-webkit-transform:rotate(0deg);
+		transform:rotate(0deg);
+		opacity:1;
+	}
+	100% {
+		left:100%;
+		-webkit-transform:rotate(-180deg);
+		transform:rotate(-180deg);
+		opacity:0;
+	}
+}
+
+@-o-keyframes move {
+	0% {
+		left:0;
+		opacity:0;
+	}
+	35% {
+		left:41%;
+		-o-transform:rotate(0deg);
+		transform:rotate(0deg);
+		opacity:1;
+	}
+	65% {
+		left:59%;
+		-o-transform:rotate(0deg);
+		transform:rotate(0deg);
+		opacity:1;
+	}
+	100% {
+		left:100%;
+		-o-transform:rotate(-180deg);
+		transform:rotate(-180deg);
+		opacity:0;
+	}
+}
+
+
+</style>
+
+	<!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaxNpk_Byr5MGTq80iiw0jYKgUDpG_Vs8&callback=initMap">
+ </script> -->
+
 
 
   <!-- <link rel="stylesheet" href="/styles/style.css"> -->
 </head>
 <body>
+<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand page-scroll" href="#page-top">
+                <i class="fa fa-play-circle"></i>  <span class="light">Start</span> Recharge
+            </a>
+        </div>
 
-	<h1>HI FROM HOME VIEW</h1>
-	<div id='map-canvas' class='map-canvas' role="application" data-options='{"properties":{"dropMarker":"true","geolocate":true,"isReport":true,"mapTypeControl":true,"flexy":true}}'></div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+            <ul class="nav navbar-nav">
+                <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                <li class="hidden">
+                    <a href="#page-top"></a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#about">About</a>
+                </li>
+                <li>
+                    <!-- <a class="page-scroll" href="#download">Download</a> -->
+                </li>
+                <li>
+                    <a class="page-scroll" href="#contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+	<div id="loader-container">
+		<div id="load">
+		  <div>G</div>
+		  <div>N</div>
+		  <div>I</div>
+		  <div>D</div>
+		  <div>A</div>
+		  <div>O</div>
+		  <div>L</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="home-text">
+			<p>Hello Mike. Your current location is below. </p>
+			<p> When you are ready to have your car picked up, hit the request service button. </p>
+		</div>
+		<a href="/base" class="service-btn">Request Service</a>
+		<div id='map-canvas' class='map-canvas' role="application" data-options='{"properties":{"dropMarker":"true","geolocate":true,"isReport":true,"mapTypeControl":true,"flexy":true}}'></div>
+	</div>
+
+	<script type="text/javascript" src="/js/home.js"></script>
+
 </body>
 </html>
