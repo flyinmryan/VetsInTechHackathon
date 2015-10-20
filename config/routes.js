@@ -16,4 +16,8 @@ module.exports = function(app){
   app.get('/base', function (req, res){
   	res.render("base");
   });
+
+  app.get('/base2', function (req, res){
+  	res.render("base2");
+  });
 };
