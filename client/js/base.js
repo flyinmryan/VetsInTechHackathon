@@ -25,9 +25,29 @@ $(function() {
 
 
     locateMe();
+    twilioSend();
   }
 
   initialize();
+
+
+    function twilioSend () {
+    var client = require('twilio')('AC5b532f070424194b2ccbf5d3d457edf4', '40ade4f8b031e6ecf0b386d60a602c7f');
+  ​
+    client.sendMessage({
+        to:'+16503050025', // the number for the phone in your pocket
+        from:'+14153002528', // your Twilio number
+        body:'Your service request has been received.' + 
+        'We will have someone come and take care of your vehicle.' // The body of the text message
+    }, function(error, message) {
+        // This callback is executed when the request completes
+        if (error) {
+            console.error('Dagnabit.  We couldn\'t send the message');
+        } else {
+            console.log('Message sent! Message id: '+message.sid);
+        }
+    });
+  }
 
 
 

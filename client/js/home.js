@@ -27,6 +27,7 @@ $(function() {
   initialize();
 
 
+  
 
 // ==========================================
 // GEOLOCATING USER AND MARKING LOCATION ====
