@@ -21,6 +21,9 @@ $(function() {
 
     map = new google.maps.Map(mapDiv,mapOptions); //builds map in #map-canvas DIV, with the above options. Current view set to show all of US.
 
+         
+
+
     locateMe();
   }
 
@@ -34,6 +37,21 @@ $(function() {
 
 //geo-locate function on button click
   function locateMe (){
+      new google.maps.Marker({
+              map: map,
+              position: {lat: 37.461255, lng: -122.139101},
+              animation: google.maps.Animation.DROP,
+              title: 'Charging Station',
+              icon: '/img/chargpin.png'
+      });
+
+      new google.maps.Marker({
+              map: map,
+              position: {lat: 37.454937, lng: -122.149103},
+              animation: google.maps.Animation.DROP,
+              title: 'Driver',
+              icon: '/img/driverpin.png'
+      });
      $('#loader-container').show(); 
       if(navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -50,7 +68,7 @@ $(function() {
           });     
         //zoom to users location
           map.setCenter(pos);
-          map.setZoom(17);
+          map.setZoom(13);
           $('#loader-container').hide();
         }, function() {
           handleNoGeolocation(true);

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-	<script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 
 
-	<script src="//maps.googleapis.com/maps/api/js?v=3.exp"></script>
-	<!-- Bootstrap Core CSS -->
+  <script src="//maps.googleapis.com/maps/api/js?v=3.exp"></script>
+  <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
@@ -18,19 +18,19 @@
     <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
 
-	<style> 
+  <style> 
 
-	#map-canvas {
-	position: absolute;
-	height: 53vh;
-	width: 100vw;
-	margin-top: 20px;
-	margin-bottom: 10px;
-	margin-left: 10px;
-	z-index: 2;
-	}
+  #map-canvas {
+  position: absolute;
+  height: 70vh;
+  width: 100vw;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  z-index: 2;
+  }
 
-	.service-btn {
+  .service-btn {
   background: #fa0f36;
   background-image: -webkit-linear-gradient(top, #fa0f36, #913535);
   background-image: -moz-linear-gradient(top, #fa0f36, #913535);
@@ -48,7 +48,7 @@
   color: #ffffff;
   font-size: 21px;
   padding: 10px 30px 10px 30px;
-  text-decoration: none;	
+  text-decoration: none;  
   float: none;
   margin-left: 40%;
   margin-right: auto;
@@ -65,17 +65,17 @@
 }
 
 .home-text {
-	margin-top: 100px;
-	text-align: center;
+  margin-top: 100px;
+  text-align: center;
 }
 
 #loader-container {
-	position:absolute;
+  position:absolute;
   width: 2000px;
-  height:400px;
+  height:600px;
   left:5%;
   margin-left:-300px;
-  margin-top: 280px;
+  margin-top: 5px;
   z-index: 5;
   background-color: rgba(0,0,0,0.5)
 
@@ -151,116 +151,132 @@
     left:0;
     opacity:0;
   }
-	35% {
-		left: 41%; 
-		-moz-transform:rotate(0deg);
-		-webkit-transform:rotate(0deg);
-		-o-transform:rotate(0deg);
-		transform:rotate(0deg);
-		opacity:1;
-	}
-	65% {
-		left:59%; 
-		-moz-transform:rotate(0deg); 
-		-webkit-transform:rotate(0deg); 
-		-o-transform:rotate(0deg);
-		transform:rotate(0deg); 
-		opacity:1;
-	}
-	100% {
-		left:100%; 
-		-moz-transform:rotate(-180deg); 
-		-webkit-transform:rotate(-180deg); 
-		-o-transform:rotate(-180deg); 
-		transform:rotate(-180deg);
-		opacity:0;
-	}
+  35% {
+    left: 41%; 
+    -moz-transform:rotate(0deg);
+    -webkit-transform:rotate(0deg);
+    -o-transform:rotate(0deg);
+    transform:rotate(0deg);
+    opacity:1;
+  }
+  65% {
+    left:59%; 
+    -moz-transform:rotate(0deg); 
+    -webkit-transform:rotate(0deg); 
+    -o-transform:rotate(0deg);
+    transform:rotate(0deg); 
+    opacity:1;
+  }
+  100% {
+    left:100%; 
+    -moz-transform:rotate(-180deg); 
+    -webkit-transform:rotate(-180deg); 
+    -o-transform:rotate(-180deg); 
+    transform:rotate(-180deg);
+    opacity:0;
+  }
 }
 
 @-moz-keyframes move {
-	0% {
-		left:0; 
-		opacity:0;
-	}
-	35% {
-		left:41%; 
-		-moz-transform:rotate(0deg); 
-		transform:rotate(0deg);
-		opacity:1;
-	}
-	65% {
-		left:59%; 
-		-moz-transform:rotate(0deg); 
-		transform:rotate(0deg);
-		opacity:1;
-	}
-	100% {
-		left:100%; 
-		-moz-transform:rotate(-180deg); 
-		transform:rotate(-180deg);
-		opacity:0;
-	}
+  0% {
+    left:0; 
+    opacity:0;
+  }
+  35% {
+    left:41%; 
+    -moz-transform:rotate(0deg); 
+    transform:rotate(0deg);
+    opacity:1;
+  }
+  65% {
+    left:59%; 
+    -moz-transform:rotate(0deg); 
+    transform:rotate(0deg);
+    opacity:1;
+  }
+  100% {
+    left:100%; 
+    -moz-transform:rotate(-180deg); 
+    transform:rotate(-180deg);
+    opacity:0;
+  }
 }
 
 @-webkit-keyframes move {
-	0% {
-		left:0; 
-		opacity:0;
-	}
-	35% {
-		left:41%; 
-		-webkit-transform:rotate(0deg); 
-		transform:rotate(0deg); 
-		opacity:1;
-	}
-	65% {
-		left:59%; 
-		-webkit-transform:rotate(0deg); 
-		transform:rotate(0deg); 
-		opacity:1;
-	}
-	100% {
-		left:100%;
-		-webkit-transform:rotate(-180deg); 
-		transform:rotate(-180deg); 
-		opacity:0;
-	}
+  0% {
+    left:0; 
+    opacity:0;
+  }
+  35% {
+    left:41%; 
+    -webkit-transform:rotate(0deg); 
+    transform:rotate(0deg); 
+    opacity:1;
+  }
+  65% {
+    left:59%; 
+    -webkit-transform:rotate(0deg); 
+    transform:rotate(0deg); 
+    opacity:1;
+  }
+  100% {
+    left:100%;
+    -webkit-transform:rotate(-180deg); 
+    transform:rotate(-180deg); 
+    opacity:0;
+  }
 }
 
 @-o-keyframes move {
-	0% {
-		left:0; 
-		opacity:0;
-	}
-	35% {
-		left:41%; 
-		-o-transform:rotate(0deg); 
-		transform:rotate(0deg); 
-		opacity:1;
-	}
-	65% {
-		left:59%; 
-		-o-transform:rotate(0deg); 
-		transform:rotate(0deg); 
-		opacity:1;
-	}
-	100% {
-		left:100%; 
-		-o-transform:rotate(-180deg); 
-		transform:rotate(-180deg); 
-		opacity:0;
-	}
+  0% {
+    left:0; 
+    opacity:0;
+  }
+  35% {
+    left:41%; 
+    -o-transform:rotate(0deg); 
+    transform:rotate(0deg); 
+    opacity:1;
+  }
+  65% {
+    left:59%; 
+    -o-transform:rotate(0deg); 
+    transform:rotate(0deg); 
+    opacity:1;
+  }
+  100% {
+    left:100%; 
+    -o-transform:rotate(-180deg); 
+    transform:rotate(-180deg); 
+    opacity:0;
+  }
 }
+
+.red-box {
+    background-color: rgba(255,0,0,0.9);
+    
+  }
+
+  .yellow-box {
+    background-color: rgba(255,255,0,0.2);
+
+  }
+
+  .green-box {
+    background-color: rgba(0,255,0,0.2);
+    
+  }
+  .color-bar {
+    height: 10px;
+    margin-top: 10px;
+  }
+
+  .status-txt {
+    margin-top: 100px;
+  }
 
 
 </style>
-
-	<!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaxNpk_Byr5MGTq80iiw0jYKgUDpG_Vs8&callback=initMap">
- </script> -->
-  
-  
-
-  <!-- <link rel="stylesheet" href="/styles/style.css"> -->
 </head>
 <body>
 <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
@@ -296,27 +312,34 @@
     </div>
     <!-- /.container -->
 </nav>
-	<div id="loader-container">
-		<div id="load">
-		  <div>G</div>
-		  <div>N</div>
-		  <div>I</div>
-		  <div>D</div>
-		  <div>A</div>
-		  <div>O</div>
-		  <div>L</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="home-text">
-			<p>Hello Mike. Your current location is below. </p>
-			<p> When you are ready to have your car picked up, hit the request service button. </p>
-		</div>
-		<a href="/base" class="service-btn">Request Service</a>
-		<div id='map-canvas' class='map-canvas' role="application" data-options='{"properties":{"dropMarker":"true","geolocate":true,"isReport":true,"mapTypeControl":true,"flexy":true}}'></div>
-	</div>	
+  <h3 class="status-txt">Driver Located and Routed to Your Location.</h3>
+  <div class="color-bar">
+    <div class="red-box col-md-4">
+      Stage 1
+    </div>
+    <a href="/base2"><div class="yellow-box col-md-4">
+      Stage 2
+    </div></a>
+    <div class="green-box col-md-4">
+      Stage 3
+    </div>
+  </div>
+  <div id="loader-container">
+    <div id="load">
+      <div>G</div>
+      <div>N</div>
+      <div>I</div>
+      <div>D</div>
+      <div>A</div>
+      <div>O</div>
+      <div>L</div>
+    </div>
+  </div>
+  <div class="row">
+    <div id='map-canvas' class='map-canvas' role="application" data-options='{"properties":{"dropMarker":"true","geolocate":true,"isReport":true,"mapTypeControl":true,"flexy":true}}'></div>
+  </div>  
 
-	<script type="text/javascript" src="/js/home.js"></script>
+  <script type="text/javascript" src="/js/base.js"></script>
 
 </body>
 </html>
